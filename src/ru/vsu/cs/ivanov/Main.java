@@ -9,9 +9,12 @@ public class Main {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
+                SolarSystem solarSystem = new SolarSystem(500, 500);
+                solarSystem.setSolarSystem();
+
                 JFrame frame = new JFrame("Solar system");
                 JPanel panel = new JPanel();
-                Animation animation = new Animation();
+                Animation animation = new Animation(solarSystem);
                 panel.add(animation);
 
                 JLabel labelSpeed = new JLabel("speed");
@@ -45,10 +48,10 @@ public class Main {
                         int green = Integer.parseInt(textColorGreen.getText());
                         int blue = Integer.parseInt(textColorBlue.getText());
                         Color color = new Color(red, green, blue);
-                        double planetX = animation.getStarX() + orbitRadius;
-                        double planetY = animation.getStarY();
+                        double planetX = animation.getSolarSystem().getStarX() + orbitRadius;
+                        double planetY = animation.getSolarSystem().getStarY();
 
-                        animation.addPlanet(new Planet(planetX, planetY, speed, orbitRadius, planetDiameter, color));
+                        animation.getSolarSystem().addPlanet(new Planet(planetX, planetY, speed, orbitRadius, planetDiameter, color));
                     }
                 });
 
